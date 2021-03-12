@@ -1,0 +1,23 @@
+server:
+  port: 6400
+
+management:
+  server:
+    port: 6401
+
+spring:
+  application:
+    name: first-loan
+  datasource:
+    url: jdbc:mysql://localhost:3306/first_loan?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+  cloud:
+    consul:
+      enabled: false
+      discovery:
+        register: true
+        enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update

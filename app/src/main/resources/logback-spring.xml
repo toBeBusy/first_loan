@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/gfw.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/gfw.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.netflix" level="WARN" additivity="false">
+        <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="rollingFileAppender"/>
+    </logger>
+
+    <logger name="com.mucfc.fep" level="WARN" additivity="false">
+        <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="rollingFileAppender"/>
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="rollingFileAppender"/>
+    </root>
+
+</configuration>

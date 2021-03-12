@@ -1,0 +1,8 @@
+branches:
+  dev(elop)?(ment)?$:
+    tag: dev
+  features?[/-]:
+    tag: feature
+    increment: None
+ignore:
+  sha: []
